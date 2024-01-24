@@ -14,29 +14,62 @@ import com.bmhs.gdxintro.gfx.utils.TileHandler;
 public class AppHandler extends ApplicationAdapter {
 	SpriteBatch batch;
 
-	//delete me
-	//Texture img;
-	//TextureRegion subImg;
+
 
 	int x, y;
-	
+
+
+	int[][] Canvas = {{0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+					 {0, 0, 0, 0, 4, 4, 3, 3, 3, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0},
+					 {0, 0, 0, 0, 0, 0, 4, 4, 4, 3, 3, 3, 4, 0, 0, 4, 0, 0, 0, 0},
+					 {0, 0, 0, 0, 0, 0, 4, 3, 3, 2, 2, 4, 3, 0, 0, 0, 4, 0, 0, 0},
+					 {0, 0, 0, 0, 0, 4, 3, 2, 2, 2, 2, 4, 3, 0, 0, 4, 0, 4, 0, 0},
+					 {4, 4, 0, 0, 4, 2, 2, 2, 2, 2, 2, 4, 3, 0, 0, 4, 0, 4, 0, 0},
+					 {4, 3, 4, 0, 4, 2, 2, 2, 2, 2, 2, 2, 4, 3, 0, 0, 0, 4, 0, 0},
+					 {0, 4, 1, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 0},
+					 {0, 4, 1, 4, 2, 2, 2, 2, 2, 2, 2, 2, 4, 3, 3, 3, 3, 3, 3, 4},
+					 {0, 4, 4, 0, 4, 1, 4, 3, 3, 4, 1, 4, 3, 4, 4, 4, 4, 4, 4, 0},
+					 {0, 4, 0, 0, 0, 4, 4, 3, 4, 1, 1, 1, 4, 3, 3, 3, 3, 3, 4, 0},
+					 {0, 0, 0, 0, 0, 0, 4, 4, 1, 1, 1, 1, 1, 4, 4, 4, 4, 4, 0, 0},
+				 	 {0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0}};
+
+
+
+
+//	int[][] worldIntArray = new int[12][20];
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 
-		//delete me
-		//img = new Texture("primaryColorSheet.png");
-		//subImg = new TextureRegion(TileHandler.getTileHandler().getWorldTileArray().get(0).getTexture(), 64, 0, 128, 128);
+
 
 		x = 0;
 		y = 0;
 	}
+
+	private void setRandomArray() {
+		for(int r = 0; r < Canvas.length; r++) {
+			for(int c = 0; c < Canvas[r].length; c++) {
+				Canvas[r][c] = MathUtils.random(4);
+			}
+		}
+	}
+
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 		batch.begin();
 
+		for(int r = 0; r < Canvas.length; r++) {
+			for (int c = 0; c < Canvas[r].length; c++) {
+				batch.draw(TileHandler.getTileHandler().getWorldTileArray().get(Canvas[r][c]).getTexture(), c * 32, Gdx.graphics.getHeight() - 32 - (r * 32));
+
+			}
+		}
+
+		/*
 		for(int r = 0; r < Gdx.graphics.getHeight(); r+=64) {
 			for(int c = 0; c < Gdx.graphics.getWidth(); c+=64) {
 				batch.draw(TileHandler.getTileHandler().getWorldTileArray().get(x++).getTexture(), c, r);
@@ -45,7 +78,7 @@ public class AppHandler extends ApplicationAdapter {
 				}
 			}
 		}
-
+		*/
 
 
 		batch.end();
