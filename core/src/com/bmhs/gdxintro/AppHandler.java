@@ -21,6 +21,7 @@ public class AppHandler extends ApplicationAdapter {
 	int a;
 	int b;
 	int c;
+	int d;
 	int[][] Canvas = {{0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 					 {0, 0, 0, 0, 4, 4, 3, 3, 3, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0},
 					 {0, 0, 0, 0, 0, 0, 4, 4, 4, 3, 3, 3, 4, 0, 0, 4, 0, 0, 0, 0},
